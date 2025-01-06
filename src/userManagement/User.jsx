@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./User.css"; // Import the updated CSS file
 
 const User = () => {
   const [users, setUser] = useState([]);
   const [error, setError] = useState(null);
 
-  // Fetch users on component mount
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -23,7 +23,6 @@ const User = () => {
     }
   };
 
-  // Handle delete user
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this user?"
@@ -33,7 +32,6 @@ const User = () => {
     try {
       const response = await axios.delete(`https://backendcrud-wvd0.onrender.com/user/deleteuser/${id}`);
       alert(response.data.message);
-      // Remove deleted user from the state
       setUser(users.filter((user) => user._id !== id));
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -42,30 +40,33 @@ const User = () => {
   };
 
   return (
-    <>
-      {error && <p>Error fetching users: {error.message}</p>}
-      <table border="1px">
-        <tbody>
+    <div className="user-container">
+      <h1 className="user-title">User Management</h1>
+      {error && <p className="error-message">Error fetching users: {error.message}</p>}
+      <table className="user-table">
+        <thead>
           <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Location</th>
             <th>Action</th>
           </tr>
+        </thead>
+        <tbody>
           {users.map((usera, index) => (
-            <tr key={index}>
+            <tr key={index} className="user-row">
               <td>{usera.name}</td>
               <td>{usera.email}</td>
               <td>{usera.location}</td>
               <td>
-                <Link to={`/update/${usera._id}`}>Update</Link>{" "}
-                <button onClick={() => handleDelete(usera._id)}>Delete</button>
+                <Link to={`/update/${usera._id}`} className="update-link">Update</Link>
+                <button className="delete-button" onClick={() => handleDelete(usera._id)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

@@ -3,8 +3,6 @@ import { BrowserRouter, Routes , Route, Link } from 'react-router-dom'
 import User from './userManagement/User'
 import CreateUser from './userManagement/CreateUser'
 import UpdateUser from './userManagement/UpdateUser'
-import DeleteUser from './userManagement/DeleteUser'
-import SearchUser from './userManagement/SearchUser'
 
 const Apps = () => {
   return (
@@ -16,30 +14,14 @@ const Apps = () => {
                     <ul>
                         <div className="op-container">
                             <li>
-                                <Link to="/">User</Link>
+                                <Link to="/">List the User</Link>
                             </li>
                         </div>
                         <div className="op-container">
                             <li>
                                 <Link to="/create">Create User</Link>
                             </li>
-                        </div>
-                        <div className="op-container">
-                            <li>
-                                <Link to="/update">Update User</Link>
-                            </li>
-                        </div>
-                        <div className="op-container">
-                            <li>
-                                <Link to="/search">Search User</Link>
-                            </li>
-                        </div>
-                        <div className="op-container">
-                            <li>
-                                <Link to="/delete">Delete User</Link>
-                            </li>
-                        </div>
-                        
+                        </div>                        
                     </ul>
                 </div>
             </nav>
@@ -48,8 +30,6 @@ const Apps = () => {
             <Route path = '/' element={<User/>}/>
             <Route path='/create' element={<CreateUser/>}/>
             <Route path='/update/:id' element={<UpdateUser/>}/>
-            <Route path='/search' element={<SearchUser/>}/>
-            <Route path='/delete' element={<DeleteUser/>}/>
         </Routes>
     </BrowserRouter>
     </>
