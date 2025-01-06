@@ -1,0 +1,23 @@
+
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    width: 500px;
+    height: 500px;
+  }
+
+  .formContainer .formlist{
+    padding: 30px;
+    background: lightblue;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
